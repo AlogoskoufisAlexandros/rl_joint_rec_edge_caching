@@ -1,0 +1,21 @@
+{
+  "n_ncpbrs_seeds": 10,
+  "n_paired": 10,
+  "NCPBRS_micro_mean": 0.4786196517853007,
+  "NCPBRS_micro_std": 0.09766824934586439,
+  "WC_shipped_micro_mean": 0.8028991512466066,
+  "NC_shipped_micro_mean": 0.4949577765755713,
+  "delta_WC_minus_NCPBRS_mean": 0.32427949946130574,
+  "delta_WC_minus_NCPBRS_std": 0.10064209285097764,
+  "wc_wins": 10,
+  "paired_t_p": 3.0607125286963647e-06,
+  "wilcoxon_p": 0.001953125,
+  "WC_reproduction": [
+    {
+      "seed": 7,
+      "rerun": 0.7968982985324905,
+      "shipped": 0.7968982985324905,
+      "diff": 0.0
+    }
+  ]
+}

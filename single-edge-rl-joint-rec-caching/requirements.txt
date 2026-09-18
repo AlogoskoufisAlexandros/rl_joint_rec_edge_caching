@@ -1,0 +1,12 @@
+# Versions the results were produced with. Install with
+#   pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cu121
+# For another CUDA version or CPU-only, pick the matching torch 2.5.1 wheel.
+torch==2.5.1+cu121
+numpy==2.3.5
+pandas==3.0.1
+scipy==1.17.1
+matplotlib==3.10.8
+tqdm==4.67.3
+ipython==9.10.0
+scikit-learn==1.8.0
+psutil==7.2.2

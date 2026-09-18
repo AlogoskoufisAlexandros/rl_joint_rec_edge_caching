@@ -1,0 +1,2 @@
+agent,seed,micro,macro,dataset,N,K,corr_threshold,train_iters,eval_iters,minutes,peak_rss_mb,family,notebook_md5,torch,finished,smoke
+NCPBRS,6,0.5311647271268057,0.33991184188106766,movielens,5000,10,0.6,20000,10000,278.0,1718,single_edge_persistent_v1,69234f3d8b4001d9bd1d763bbff44849,2.5.1+cu121,2026-09-17 12:57:58,False

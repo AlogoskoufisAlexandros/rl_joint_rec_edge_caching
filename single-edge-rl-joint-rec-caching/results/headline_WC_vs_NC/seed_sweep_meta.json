@@ -1,0 +1,44 @@
+{
+  "EXPERIMENT_ID": "single_edge_seed_sweep_v1",
+  "dataset_kind": "movielens",
+  "number_of_contents": 5000,
+  "cache_size": 10,
+  "corr_threshold": 0.6,
+  "environment_version": "done.ipynb single-edge (unified Environment, tuple mode)",
+  "state_representation_version": "state_features=7 (continuous u as 7th feature)",
+  "action_space_version": "WC: M x (K+1) joint; NC: M rec-only + popularity caching heuristic",
+  "reward_version": "hit=1/miss=0; WC adds PBRS Phi scaled 0.1 (policy-invariant); NC raw",
+  "scheduler_type": "OneCycleLR(max_lr=lr, pct_start=0.3), stepped per-episode",
+  "optimizer_config": "AdamW; sigma group lr=5e-5 wd=0; rest lr=1e-4 wd=1e-3; grad clip 5.0",
+  "target_sync": "hard copy every 500 episodes",
+  "baseline_reference": "Non_RL_agent_baseline, Non_RL_agent_greedy (same env/seed)",
+  "metric_definitions": {
+    "cache_hit_MICRO": {
+      "computation_time": "BEFORE_ACTION",
+      "definition": "total hits / total steps, pooled over eval episodes",
+      "role": "METRIC OF RECORD"
+    },
+    "cache_hit_MACRO": {
+      "computation_time": "BEFORE_ACTION",
+      "definition": "mean of per-episode hit/steps",
+      "role": "diagnostic only (cold-start biased ~15pt low)"
+    }
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "train_iters": 20000,
+  "eval_iters": 10000,
+  "seeding_protocol": "set_seed(seed) + rebuild a fresh Environment before each agent's train AND before each agent's eval -> paired init on a clean env + identical eval episodes across agents within a seed (Environment.__init__ is RNG-free in tuple mode)",
+  "env_lifecycle": "fresh Environment rebuilt per run (per agent, per train/eval phase)",
+  "smoke": false
+}

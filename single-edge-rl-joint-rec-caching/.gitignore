@@ -1,0 +1,17 @@
+# Raw datasets: large and redistribution-restricted -- download per docs/DATA.md
+ratings.csv
+kuairec_small_matrix.csv
+# Derived data caches (rebuilt from the raw data by the notebook)
+*.npy
+*.npz.tmp
+# Trained weights
+*.chkpt
+*.pt
+# Run outputs you generate (the shipped results/ folders are committed)
+results/new_sweep/
+results/smoke/
+seed_sweep/
+# Jupyter / Python
+.ipynb_checkpoints/
+__pycache__/
+*.pyc

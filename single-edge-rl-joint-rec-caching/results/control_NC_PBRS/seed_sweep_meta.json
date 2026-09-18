@@ -1,0 +1,56 @@
+{
+  "EXPERIMENT_ID": "single_edge_seed_sweep_ncpbrs_v1",
+  "family": "single_edge_persistent_v1",
+  "family_note": "NC+PBRS control for the 2026-07-15 single-edge sweep. New reward family vs plain NC (reward_version differs); cache-hit MICRO is read from env hit-tracking and stays comparable with the shipped WC/NC columns. WC seed 7 is re-run only as a reproduction check of the shipped WC column.",
+  "dataset_kind": "movielens",
+  "u_file": "u_file_movielens.npy",
+  "u_mean_of_record": 0.08565857,
+  "number_of_contents": 5000,
+  "cache_size": 10,
+  "corr_threshold": 0.6,
+  "code_snapshot": {
+    "notebook": "done_seedsweep.ipynb",
+    "md5": "69234f3d8b4001d9bd1d763bbff44849",
+    "driver": "single_edge_ncpbrs_sweep.py",
+    "driver_md5": "eab4b666485a517fb7223735ad55a8b7",
+    "note": "definition cells identical to done.ipynb.bak-perf-20260714-171214 except DQNAgent_NC (= NC + PBRS learn); verified 2026-09-16"
+  },
+  "software": {
+    "python": "3.11.0",
+    "torch": "2.5.1+cu121",
+    "cuda": "12.1",
+    "cudnn": 90100,
+    "gpu": "NVIDIA GeForce GTX 1060 6GB",
+    "host": "<redacted>"
+  },
+  "environment_version": "done.ipynb single-edge (unified Environment, tuple mode), persistent cache",
+  "state_representation_version": "state_features=7 (continuous u as 7th feature)",
+  "action_space_version": "NCPBRS: M rec-only + popularity caching heuristic; WC: M x (K+1) joint",
+  "reward_version": {
+    "NCPBRS": "nc_pbrs_v1: hit=1/miss=0 + PBRS Phi (secured + (1-secured)*fallback) scaled 0.1, identical to DQNAgent_WC.learn; applied inside learn(), env reward unshaped",
+    "WC": "hit=1/miss=0 + PBRS Phi scaled 0.1 (as shipped sweep)"
+  },
+  "scheduler_type": "OneCycleLR(max_lr=lr, pct_start=0.3), stepped per-episode",
+  "optimizer_config": "AdamW; sigma group lr=5e-5 wd=0; rest lr=1e-4 wd=1e-3; grad clip 5.0",
+  "target_sync": "hard copy every 500 episodes",
+  "checkpoint_selection_metric": "200-episode rolling mean of per-episode cache-hit rate (train), best_state_dict loaded before eval -- same as shipped sweep",
+  "baseline_reference": "paired against shipped seed_sweep_NC_NO_PBRS\\seed_sweep_results.csv (WC_micro, NC_micro; same seeds, same env realisation, same eval episodes)",
+  "metric_definitions": {
+    "cache_hit_MICRO": {
+      "computation_time": "BEFORE_ACTION",
+      "definition": "total hits / total steps, pooled over eval episodes",
+      "role": "METRIC OF RECORD"
+    },
+    "cache_hit_MACRO": {
+      "computation_time": "BEFORE_ACTION",
+      "definition": "mean of per-episode hit/steps",
+      "role": "diagnostic only"
+    }
+  },
+  "train_iters": 20000,
+  "eval_iters": 10000,
+  "seeding_protocol": "set_seed(seed) + fresh Environment before train and before eval (notebook _run_rl_agent)",
+  "execution": "one (agent, seed) per OS process, N processes concurrently on one GPU",
+  "smoke": false,
+  "created": "2026-09-16 21:21:15"
+}

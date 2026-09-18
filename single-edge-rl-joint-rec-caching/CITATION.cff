@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Joint content recommendation and edge caching with deep RL"
+abstract: >-
+  Deep reinforcement learning for joint content recommendation and edge
+  caching. A Double DQN agent jointly recommends the next content item and decides
+  whether to admit the just-watched item into a single edge cache, trained
+  and evaluated in a MovieLens-derived simulator. Compares joint learning
+  against recommendation-only RL with heuristic caching, and against non-RL
+  baselines. Post-graduation re-implementation of the author's diploma thesis
+  (Technical University of Crete, 2025) with a redesigned Q-network and a
+  faster training pipeline.
+authors:
+  - family-names: Alogoskoufis
+    given-names: Alexandros
+keywords:
+  - deep reinforcement learning
+  - recommendation systems
+  - edge caching
+  - content delivery
+  - DQN
+  - double-dqn
+license: MIT
+date-released: "2026-09-18"
